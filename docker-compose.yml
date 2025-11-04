@@ -10,6 +10,8 @@ services:
       - "8000:8000"
     volumes:
       - .:/code
+      - ./media:/code/media
+      - ./static:/code/static
     depends_on:
       - db
       - redis
@@ -44,6 +46,8 @@ services:
     command: celery -A config worker -l info
     volumes:
       - .:/code
+      - ./media:/code/media
+      - ./static:/code/static
     depends_on:
       - redis
       - db

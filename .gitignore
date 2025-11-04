@@ -206,5 +206,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+apps/mockups/migrations/*.py
+!apps/mockups/migrations/__init__.py
 media/
-mockups/
+static/
