@@ -6,16 +6,16 @@ from pathlib import Path
 USE_I18N = True
 USE_TZ = True
 MEDIA_URL = '/media/'
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 LANGUAGE_CODE = 'en-us'
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default="&(dj-shirtprinter-secret_key)$")
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'redis')}:{os.environ.get('REDIS_PORT', 6379)}/0"
-CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 DEBUG = config("DEBUG", cast=bool, default=True)
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 TIME_ZONE = 'UTC'
@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     *list(map(lambda app: f"apps.{app}", APPLICATIONS)),
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 TEMPLATES = [
     {
