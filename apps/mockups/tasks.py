@@ -30,6 +30,7 @@ def generate_mockup_images_task(task_id):
 
         for file_name in template_files:
             color_name = os.path.splitext(file_name)[0]
+            color_name = os.path.splitext(file_name)[0]  
             src_path = os.path.join(source_dir, file_name)
 
             img = Image.open(src_path).convert("RGBA")
