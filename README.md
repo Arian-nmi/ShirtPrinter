@@ -7,6 +7,7 @@ Features:
     Async task handling with Celery + Redis
     Pillow for text rendering on images
     Dockerized setup (Django, PostgreSQL, Redis)
+    JWT Authentication
 -------------------------------------
 🐳 Run with Docker
 
